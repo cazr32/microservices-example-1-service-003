@@ -1,7 +1,5 @@
 package com.example.demo;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
