@@ -16,7 +16,7 @@
  */
 package com.example.demo;
 
-//import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,9 +25,9 @@ import org.springframework.stereotype.Component;
  * Use <tt>@Component</tt> to make Camel auto detect this route when starting.
  */
 @Component
-public class SampleCamelRouter /*extends RouteBuilder*/ {
+public class SampleCamelRouter extends RouteBuilder {
 
-    /*@Override
+    @Override
     public void configure() throws Exception {
         from("timer:hello?period=1000")
             .transform(simple("Random number ${random(0,100)}"))
@@ -35,6 +35,6 @@ public class SampleCamelRouter /*extends RouteBuilder*/ {
 
         from("rabbitmq:foo")
             .log("From RabbitMQ: ${body}");
-    }*/
+    }
 
 }
