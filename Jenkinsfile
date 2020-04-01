@@ -3,6 +3,7 @@ pipeline{
     stages{
         stage('Build'){
             steps {
+                sh 'mvn dependency:purge-local-repository'
                 sh 'mvn -f pom.xml clean package'
             }
             post {
