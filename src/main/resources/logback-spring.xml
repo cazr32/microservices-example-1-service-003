@@ -22,10 +22,10 @@
         </appender>
 
         <logger name="org.springframework.web" additivity="false" level="DEBUG">
-            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="ROLLING-FILE"/>
         </logger>
         <logger name="com.example.demo" additivity="false" level="DEBUG">
-            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="ROLLING-FILE"/>
         </logger>
 
         <root level="DEBUG">
