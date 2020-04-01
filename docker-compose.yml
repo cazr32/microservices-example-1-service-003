@@ -1,0 +1,27 @@
+version: '3'
+services:
+    # mysqldb:
+    #     image: mysql:8
+    #     volumes:
+    #         - mysql_db_data:/var/lib/mysql
+    #     restart: always
+    #     environment: 
+    #         MYSQL_ROOT_PASSWORD: root
+    #         MYSQL_DATABASE: test
+    #         MYSQL_USER: testuser
+    #         MYSQL_PASSWORD: testuser
+    
+    tomcat:
+        image: cazr32/microservices-example-1-service-001:${BUILD_ID}
+        container_name: microservices-example-1-service-001
+        # volumes:
+        #     - ./usr/docker/SampleProject2/tomcat/demo.war:/usr/local/tomcat/webapps/demo.war
+        networks:
+            - microservices-example-1-network
+        ports:
+            - "7070:8080"
+        restart: always
+# volumes:
+#     mysql_db_data:
+networks:
+    microservices-example-1-network:
