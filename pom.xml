@@ -61,12 +61,14 @@
         </dependency>-->
 		 <!-- Camel -->
         <dependency>
-            <groupId>org.apache.camel.springboot</groupId>
+            <groupId>org.apache.camel</groupId>
             <artifactId>camel-spring-boot-starter</artifactId>
+			<version>3.0.0-RC3</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.camel.springboot</groupId>
+            <groupId>org.apache.camel</groupId>
             <artifactId>camel-rabbitmq-starter</artifactId>
+			<version>3.0.0-RC3</version>
         </dependency>
 	</dependencies>
 
