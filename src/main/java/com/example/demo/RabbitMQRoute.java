@@ -18,13 +18,14 @@ package com.example.demo;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
+import org.apache.camel.component.jackson.JacksonDataFormat;
 
 /**
  * A simple Camel route that triggers from a timer and routes to RabbitMQ
  * <p/>
  * Use <tt>@Component</tt> to make Camel auto detect this route when starting.
  */
-@Component
+/*@Component
 public class SampleCamelRouter extends RouteBuilder {
 
     @Override
@@ -37,4 +38,17 @@ public class SampleCamelRouter extends RouteBuilder {
             .log("From RabbitMQ: ${body}");
     }
 
+}*/
+
+@Component
+public class RabbitMQRoute extends RouteBuilder {
+
+	@Override
+	public void configure() throws Exception {
+
+		JacksonDataFormat jsonDataFormat = new JacksonDataFormat(Employee.class);
+
+		from("direct:startQueuePoint").id("idOfQueueHere").marshal(jsonDataFormat)
+				.to("rabbitmq://localhost:5672/javainuse.exchange?queue=javainuse.queue&autoDelete=false").end();
+	}
 }
