@@ -2,18 +2,17 @@ package com.example.demo;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
 class DemoApplicationTests {
 
 	@Test
-	void contextLoads() {
-		//adding some comments to the test
-		//adding more changes to this
-		//more comments
-		assertTrue(true);
-	}
+    public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+    }
 
 }
