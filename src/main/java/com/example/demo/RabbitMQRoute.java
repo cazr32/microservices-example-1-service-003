@@ -16,9 +16,9 @@
  */
 package com.example.demo;
 
-import org.apache.camel.builder.RouteBuilder;
+//import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
-import org.apache.camel.component.jackson.JacksonDataFormat;
+//import org.apache.camel.component.jackson.JacksonDataFormat;
 
 /**
  * A simple Camel route that triggers from a timer and routes to RabbitMQ
