@@ -5,7 +5,7 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <!--<property name="LOG_FILE" value="${LOG_PATH}/log.log"/>-->
-    <property name="LOG_FILE" value="${catalina.base}/customlogs/service003.log"/>
+    <property name="LOG_FILE" value="$./customlogs/service003.log"/>
     
 
     <appender name="ROLLING-FILE"
@@ -15,7 +15,7 @@
             <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</Pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${catalina.base}/customlogs/archived/log_%d{dd-MM-yyyy}.log</fileNamePattern>
+            <fileNamePattern>./customlogs/archived/log_%d{dd-MM-yyyy}.log</fileNamePattern>
             <maxHistory>10</maxHistory>
             <totalSizeCap>100MB</totalSizeCap>
         </rollingPolicy>
