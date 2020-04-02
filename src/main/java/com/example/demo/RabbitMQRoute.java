@@ -44,11 +44,11 @@ public class SampleCamelRouter extends RouteBuilder {
 }*/
 
 @Component
-public class RabbitMQRoute extends RouteBuilder {
+public class RabbitMQRoute /*extends RouteBuilder*/ {
 
     private static final Logger logger = LoggerFactory.getLogger(RabbitMQRoute.class);
 
-	@Override
+	/*@Override
 	public void configure() throws Exception {
 
         JacksonDataFormat jsonDataFormat = new JacksonDataFormat(Employee.class);
@@ -57,5 +57,5 @@ public class RabbitMQRoute extends RouteBuilder {
 
 		from("direct:startQueuePoint").id("rabbitMQRoute").marshal(jsonDataFormat)
 				.to("rabbitmq://46.101.194.224:5672/javainuse.exchange?queue=javainuse.queue&autoDelete=false").end();
-	}
+	}*/
 }

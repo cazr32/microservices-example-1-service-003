@@ -12,10 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-@RestController
+//@RestController
 public class SpringRabbitMQController {
 
-	@EndpointInject(uri = "direct:startQueuePoint")
+	/*@EndpointInject(uri = "direct:startQueuePoint")
 	private ProducerTemplate template;
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringRabbitMQController.class);
@@ -31,5 +31,5 @@ public class SpringRabbitMQController {
 		template.asyncSendBody(template.getDefaultEndpoint(), emp);
 		logger.debug("after sending request to rabbit");
 		return "";
-	}
+	}*/
 }
