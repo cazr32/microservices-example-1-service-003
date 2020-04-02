@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 @RestController
 public class SpringRabbitMQController {
 
-	@EndpointInject(uri = "direct:javainuse.queue")
+	@EndpointInject(uri = "direct:rabbitMQRoute")
 	private ProducerTemplate template;
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringRabbitMQController.class);
@@ -27,8 +27,7 @@ public class SpringRabbitMQController {
 		emp.setName(name);
 		emp.setDesignation(designation);
 		emp.setEmpId(id);
-		logger.debug("before sending request to rabbit");
-		template.setDefaultEndpointUri("direct:javainuse.queue");
+		logger.debug("before sending request to rabbit {}", template.getDefaultEndpoint());
 		template.asyncSendBody(template.getDefaultEndpoint(), emp);
 		logger.debug("after sending request to rabbit");
 		return "";
