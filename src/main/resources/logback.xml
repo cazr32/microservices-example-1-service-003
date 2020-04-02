@@ -5,7 +5,7 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <!--<property name="LOG_FILE" value="${LOG_PATH}/log.log"/>-->
-    <property name="LOG_FILE" value="${catalina.base}/customlogs/service002-log.log"/>
+    <property name="LOG_FILE" value="${catalina.base}/customlogs/service003.log"/>
     
 
     <appender name="ROLLING-FILE"
