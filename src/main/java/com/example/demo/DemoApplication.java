@@ -33,19 +33,19 @@ public class DemoApplication {
 	}
 
 	/*@Resource
-	private Environment env;
+	private Environment env;*/
 
     @Bean
-    public ConnectionFactory rabbitConnectionFactory(){
+    public ConnectionFactory connectionFactory(){
         ConnectionFactory connectionFactory = new ConnectionFactory();
-        connectionFactory.setHost(env.getProperty("spring.rabbitmq.host"));
-		connectionFactory.setPort(Integer.valueOf(env.getProperty("spring.rabbitmq.port")));
-		connectionFactory.setUsername(env.getProperty("spring.rabbitmq.username"));
-		connectionFactory.setPassword(env.getProperty("spring.rabbitmq.password"));
-        connectionFactory.setAutomaticRecoveryEnabled(true);
+        connectionFactory.setHost("hola");
+		//connectionFactory.setPort(Integer.valueOf(env.getProperty("spring.rabbitmq.port")));
+		//connectionFactory.setUsername(env.getProperty("spring.rabbitmq.username"));
+		//connectionFactory.setPassword(env.getProperty("spring.rabbitmq.password"));
+        //connectionFactory.setAutomaticRecoveryEnabled(true);
         // more config options here etc
         return connectionFactory;
-	}*/
+	}
 	
 
 
