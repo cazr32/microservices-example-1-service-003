@@ -38,7 +38,7 @@ public class DemoApplication {
     @Bean
     public ConnectionFactory connectionFactory(){
         ConnectionFactory connectionFactory = new ConnectionFactory();
-        connectionFactory.setHost("hola");
+        //connectionFactory.setHost("hola");
 		//connectionFactory.setPort(Integer.valueOf(env.getProperty("spring.rabbitmq.port")));
 		//connectionFactory.setUsername(env.getProperty("spring.rabbitmq.username"));
 		//connectionFactory.setPassword(env.getProperty("spring.rabbitmq.password"));
