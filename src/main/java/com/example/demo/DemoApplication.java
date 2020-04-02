@@ -1,7 +1,13 @@
 package com.example.demo;
 
+import javax.annotation.Resource;
+
+import com.rabbitmq.client.ConnectionFactory;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -9,6 +15,20 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
+
+	@Resource private Environment env;
+
+    @Bean
+    public ConnectionFactory rabbitConnectionFactory(){
+        ConnectionFactory connectionFactory = new ConnectionFactory();
+        connectionFactory.setHost(env.getProperty("spring.rabbitmq.host"));
+		connectionFactory.setPort(Integer.valueOf(env.getProperty("spring.rabbitmq.port")));
+		connectionFactory.setUsername(env.getProperty("spring.rabbitmq.username"));
+		connectionFactory.setPassword(env.getProperty("spring.rabbitmq.password"));
+        connectionFactory.setAutomaticRecoveryEnabled(true);
+        // more config options here etc
+        return connectionFactory;
+    }
 
 }
 //go to this URL to test the program
