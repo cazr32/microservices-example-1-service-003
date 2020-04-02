@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.apache.camel.EndpointInject;
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,12 +8,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @RestController
 public class SpringRabbitMQController {
 
-	@Produce(uri = "direct:javainuse.queue")
+	@EndpointInject(uri = "direct:javainuse.queue")
 	private ProducerTemplate template;
+
+	private static final Logger logger = LoggerFactory.getLogger(SpringRabbitMQController.class);
 
 	@RequestMapping(value = "/employee", method = RequestMethod.GET)
 	public String createEmployee(@RequestParam int id, @RequestParam String name, @RequestParam String designation) {
@@ -21,8 +27,10 @@ public class SpringRabbitMQController {
 		emp.setName(name);
 		emp.setDesignation(designation);
 		emp.setEmpId(id);
-
+		logger.debug("before sending request to rabbit");
+		template.setDefaultEndpointUri("direct:javainuse.queue");
 		template.asyncSendBody(template.getDefaultEndpoint(), emp);
+		logger.debug("after sending request to rabbit");
 		return "";
 	}
 }
