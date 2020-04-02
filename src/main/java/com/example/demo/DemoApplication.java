@@ -11,3 +11,5 @@ public class DemoApplication {
 	}
 
 }
+//go to this URL to test the program
+//http://46.101.194.224:7171/demo-0.0.1-SNAPSHOT/employee?id=6&name=emp1&designation=manager
