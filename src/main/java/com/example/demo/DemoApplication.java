@@ -41,8 +41,9 @@ public class DemoApplication {
         connectionFactory.setHost("46.101.194.224");
 		connectionFactory.setPort(5672);
 		connectionFactory.setUsername("admin");
-		connectionFactory.setPassword("blahblah");
+		connectionFactory.setPassword("rabbitmqpwd20201");
 		connectionFactory.setAutomaticRecoveryEnabled(true);
+		connectionFactory.setSslContextFactory();
         // more config options here etc
         return connectionFactory;
 	}
