@@ -20,6 +20,9 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 import org.apache.camel.component.jackson.JacksonDataFormat;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * A simple Camel route that triggers from a timer and routes to RabbitMQ
  * <p/>
@@ -43,10 +46,14 @@ public class SampleCamelRouter extends RouteBuilder {
 @Component
 public class RabbitMQRoute extends RouteBuilder {
 
+    private static final Logger logger = LoggerFactory.getLogger(RabbitMQRoute.class);
+
 	@Override
 	public void configure() throws Exception {
 
-		JacksonDataFormat jsonDataFormat = new JacksonDataFormat(Employee.class);
+        JacksonDataFormat jsonDataFormat = new JacksonDataFormat(Employee.class);
+        
+        logger.debug("before calling the rabbitMQroute");
 
 		from("direct:startQueuePoint").id("rabbitMQRoute").marshal(jsonDataFormat)
 				.to("rabbitmq://46.101.194.224:5672/javainuse.exchange?queue=javainuse.queue&autoDelete=false").end();
