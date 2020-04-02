@@ -87,6 +87,7 @@ your REST services request and response types.
             JacksonDataFormat jsonDataFormat = new JacksonDataFormat(MyBean.class);
 
         from("direct:remoteService").id("direct-route-2").marshal(jsonDataFormat)
-            .to("rabbitmq://46.101.194.224:5672/javainuse.exchange?queue=javainuse.queue&autoDelete=false").end();
+            .to("rabbitmq://46.101.194.224:5672/javainuse.exchange?queue=javainuse.queue&autoDelete=false")
+            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
     }
 }
