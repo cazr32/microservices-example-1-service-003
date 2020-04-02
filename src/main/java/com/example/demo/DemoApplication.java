@@ -32,7 +32,7 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	@Resource
+	/*@Resource
 	private Environment env;
 
     @Bean
@@ -45,7 +45,7 @@ public class DemoApplication {
         connectionFactory.setAutomaticRecoveryEnabled(true);
         // more config options here etc
         return connectionFactory;
-	}
+	}*/
 	
 
 

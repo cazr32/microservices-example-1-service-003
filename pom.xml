@@ -48,7 +48,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-rabbitmq</artifactId>
+			<artifactId>camel-rabbitmq-starter</artifactId>
 			<version>3.0.0-M4</version>
 		</dependency>
 		<dependency>
