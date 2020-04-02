@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SpringRabbitMQController {
 
-	@Produce(uri = "direct:startRabbitMQPoint")
+	@Produce(uri = "direct:javainuse.queue")
 	private ProducerTemplate template;
 
 	@RequestMapping(value = "/employee", method = RequestMethod.GET)

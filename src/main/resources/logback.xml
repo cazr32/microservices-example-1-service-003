@@ -24,11 +24,14 @@
     <logger name="org.springframework.web" additivity="false" level="DEBUG">
         <appender-ref ref="ROLLING-FILE"/>
     </logger>
+        <logger name="org.apache.camel" additivity="false" level="DEBUG">
+        <appender-ref ref="ROLLING-FILE"/>
+    </logger>
     <logger name="com.example.demo" additivity="false" level="DEBUG">
         <appender-ref ref="ROLLING-FILE"/>
     </logger>
 
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="ROLLING-FILE"/>
     </root>
 
