@@ -43,7 +43,6 @@ public class DemoApplication {
 		connectionFactory.setUsername("admin");
 		connectionFactory.setPassword("rabbitmqpwd20201");
 		connectionFactory.setAutomaticRecoveryEnabled(true);
-		connectionFactory.setSslContextFactory();
         // more config options here etc
         return connectionFactory;
 	}
