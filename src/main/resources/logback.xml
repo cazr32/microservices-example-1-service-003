@@ -4,7 +4,9 @@
 
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
-    <property name="LOG_FILE" value="${LOG_PATH}/log.log"/>
+    <!--<property name="LOG_FILE" value="${LOG_PATH}/log.log"/>-->
+    <property name="LOG_FILE" value="${catalina.base}/customlogs/service002-log.log"/>
+    $
 
     <appender name="ROLLING-FILE"
                 class="ch.qos.logback.core.rolling.RollingFileAppender">
