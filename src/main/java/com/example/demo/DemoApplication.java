@@ -35,7 +35,7 @@ public class DemoApplication {
 	/*@Resource
 	private Environment env;*/
 
-    @Bean
+    /*@Bean
     public ConnectionFactory connectionFactory(){
         ConnectionFactory connectionFactory = new ConnectionFactory();
         connectionFactory.setHost("46.101.194.224");
@@ -45,7 +45,7 @@ public class DemoApplication {
 		connectionFactory.setAutomaticRecoveryEnabled(true);
         // more config options here etc
         return connectionFactory;
-	}
+	}*/
 	
 
 
