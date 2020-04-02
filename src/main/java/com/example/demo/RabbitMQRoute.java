@@ -49,6 +49,6 @@ public class RabbitMQRoute extends RouteBuilder {
 		JacksonDataFormat jsonDataFormat = new JacksonDataFormat(Employee.class);
 
 		from("direct:startQueuePoint").id("idOfQueueHere").marshal(jsonDataFormat)
-				.to("rabbitmq://46.101.194.224:5672/javainuse.exchange?queue=javainuse.queue&autoDelete=false").end();
+				.to("rabbitmq://46.101.194.224:5672/javainuse.exchange?username=admin&password=rabbitmqpwd20201&queue=javainuse.queue&autoDelete=false").end();
 	}
 }
