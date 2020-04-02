@@ -14,6 +14,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Value;
 
+import org.apache.camel.component.jackson.JacksonDataFormat;
+
 @Component
 public class RestApi extends RouteBuilder {
 
@@ -64,7 +66,7 @@ your REST services request and response types.
             .to("direct:remoteService");
         
    
-        from("direct:remoteService")
+        /*from("direct:remoteService")
             .routeId("direct-route")
             .tracing()
             .log(">>> ${body.id}")
@@ -80,6 +82,11 @@ your REST services request and response types.
                     exchange.getIn().setBody(bodyIn);
                 }
             })
-            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
+            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));*/
+
+            JacksonDataFormat jsonDataFormat = new JacksonDataFormat(MyBean.class);
+
+        from("direct:remoteService").id("direct-route-2").marshal(jsonDataFormat)
+            .to("rabbitmq://46.101.194.224:5672/javainuse.exchange?queue=javainuse.queue&autoDelete=false").end();
     }
 }
