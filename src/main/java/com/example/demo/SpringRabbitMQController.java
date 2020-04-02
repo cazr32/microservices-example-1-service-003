@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 @RestController
 public class SpringRabbitMQController {
 
-	@EndpointInject(uri = "direct:rabbitMQRoute")
+	@EndpointInject(uri = "direct:startQueuePoint")
 	private ProducerTemplate template;
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringRabbitMQController.class);
