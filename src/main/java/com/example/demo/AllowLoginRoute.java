@@ -54,7 +54,8 @@ public class AllowLoginRoute extends RouteBuilder {
 
         from("direct:allowedLoginQueue").convertBodyTo(String.class)
             .to("log:?level=INFO&showBody=true")
-            .to(ExchangePattern.InOnly, "rabbitmq://javainuse.exchange?routingKey=loginGrant&autoDelete=false&declare=false")
+            //.to(ExchangePattern.InOnly, "rabbitmq://javainuse.exchange?routingKey=loginGrant&autoDelete=false&declare=false")
+            .to(ExchangePattern.InOnly, "rabbitmq://javainuse.exchange?routingKey=loginGrant&autoDelete=false")
             .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
     }
 

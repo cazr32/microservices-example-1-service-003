@@ -114,7 +114,8 @@ your REST services request and response types.
                     exchange.getIn().setHeaders(headers);
                 }
             })
-            .to(ExchangePattern.InOnly, "rabbitmq://javainuse.exchange?routingKey=loginRequest&autoDelete=false&declare=false");
+            //.to(ExchangePattern.InOnly, "rabbitmq://javainuse.exchange?routingKey=loginRequest&autoDelete=false&declare=false");
+            .to(ExchangePattern.InOnly, "rabbitmq://javainuse.exchange?routingKey=loginRequest&autoDelete=false");
             //.setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201))
             //.setHeader(Exchange.CONTENT_TYPE, MediaType.TEXT_PLAIN);
     }
