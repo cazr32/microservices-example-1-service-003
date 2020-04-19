@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import javax.ws.rs.core.MediaType;
 import org.apache.camel.Exchange;
+import org.apache.camel.ExchangePattern;
 import org.apache.camel.model.rest.RestBindingMode;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -53,8 +54,8 @@ public class AllowLoginRoute extends RouteBuilder {
 
         from("direct:allowedLoginQueue").convertBodyTo(String.class)
             .to("log:?level=INFO&showBody=true")
-            .to("rabbitmq://javainuse.exchange?routingKey=loginGrant&autoDelete=false")
-            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201)).end();
+            .to(ExchangePattern.InOnly, "rabbitmq://javainuse.exchange?routingKey=loginGrant&autoDelete=false")
+            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
     }
 
 }
