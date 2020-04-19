@@ -64,6 +64,7 @@ your REST services request and response types.
 //                .outType(OutBean.class)
 
             .to("direct:loginRequest");
+            
 
 
         
@@ -90,7 +91,7 @@ your REST services request and response types.
 
         from("direct:loginRequest").id("direct-route-2").marshal(jsonDataFormat)
             .to("log:?level=INFO&showBody=true")
-            .to("rabbitmq://javainuse.exchange?routingKey=loginRequest&autoDelete=false")
+            //.to("rabbitmq://javainuse.exchange?routingKey=loginRequest&autoDelete=false")
             .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201)).end();
     }
 }
