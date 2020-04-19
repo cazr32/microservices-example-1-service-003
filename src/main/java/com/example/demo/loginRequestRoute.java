@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.Map;
+
 import javax.ws.rs.core.MediaType;
 
 import org.apache.camel.CamelContext;
@@ -56,7 +58,7 @@ your REST services request and response types.
         rest("/api/").description("REST Send Login Request")
             .id("api-route-1")
             .post("/loginRequest")
-            .produces(MediaType.APPLICATION_JSON)
+            .produces(MediaType.TEXT_PLAIN)
             .consumes(MediaType.APPLICATION_JSON)
 //                .get("/hello/{place}")
             .bindingMode(RestBindingMode.auto)
@@ -92,7 +94,17 @@ your REST services request and response types.
 
         from("direct:loginRequest").id("direct-route-2").marshal(jsonDataFormat)
             .to("log:?level=INFO&showBody=true")
-            .to(ExchangePattern.InOnly, "rabbitmq://javainuse.exchange?routingKey=loginRequest&autoDelete=false")
-            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
+            .process(new Processor() {
+                @Override
+                public void process(Exchange exchange) throws Exception {
+                    Map<String, Object> headers = exchange.getIn().getHeaders();
+                    headers.put(Exchange.CONTENT_TYPE, MediaType.TEXT_PLAIN);
+                    headers.put(Exchange.HTTP_RESPONSE_CODE, constant(201));
+                    exchange.getIn().setHeaders(headers);
+                }
+            })
+            .to(ExchangePattern.InOnly, "rabbitmq://javainuse.exchange?routingKey=loginRequest&autoDelete=false&declare=false");
+            //.setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201))
+            //.setHeader(Exchange.CONTENT_TYPE, MediaType.TEXT_PLAIN);
     }
 }
