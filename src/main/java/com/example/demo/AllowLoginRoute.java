@@ -23,11 +23,11 @@ public class AllowLoginRoute extends RouteBuilder {
         restConfiguration().contextPath(contextPath) //
         .port(serverPort)
         .enableCORS(true)
-        .apiContextPath("/api-doc")
+        .apiContextPath("/api-doc-2")
         .apiProperty("api.title", "Test REST API")
         .apiProperty("api.version", "v1")
         .apiProperty("cors", "true") // cross-site
-        .apiContextRouteId("doc-api")
+        .apiContextRouteId("doc-api-2")
         .component("servlet")
         .bindingMode(RestBindingMode.json)
         .dataFormatProperty("prettyPrint", "true");
@@ -47,7 +47,7 @@ public class AllowLoginRoute extends RouteBuilder {
 
         from("direct:allowedLoginQueue").convertBodyTo(String.class)
             .to("log:?level=INFO&showBody=true")
-            .to("rabbitmq://javainuse.exchange?queue=allowedLoginQueue&autoDelete=false");
+            .to("rabbitmq://javainuse.exchange?queue=allowedLoginQueue&autoDelete=false").end();
     }
 
 }
