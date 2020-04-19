@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.apache.camel.component.jackson.JacksonDataFormat;
 
 @Component
-public class RestApi extends RouteBuilder {
+public class loginRequestRoute extends RouteBuilder {
 
     @Value("${server.port}")
     String serverPort;
@@ -52,18 +52,20 @@ You may want to use binding if you develop POJOs that maps to
 your REST services request and response types. 
 */         
         
-        rest("/api/").description("Teste REST Service")
-            .id("api-route")
-            .post("/bean")
+        rest("/api/").description("REST Send Login Request")
+            .id("api-route-1")
+            .post("/loginRequest")
             .produces(MediaType.APPLICATION_JSON)
             .consumes(MediaType.APPLICATION_JSON)
 //                .get("/hello/{place}")
             .bindingMode(RestBindingMode.auto)
-            .type(MyBean.class)
+            .type(LoginRequest.class)
             .enableCORS(true)
 //                .outType(OutBean.class)
 
-            .to("direct:remoteService");
+            .to("direct:loginRequest");
+
+
         
    
         /*from("direct:remoteService")
@@ -84,9 +86,10 @@ your REST services request and response types.
             })
             .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));*/
 
-        JacksonDataFormat jsonDataFormat = new JacksonDataFormat(MyBean.class);
+        JacksonDataFormat jsonDataFormat = new JacksonDataFormat(LoginRequest.class);
 
-        from("direct:remoteService").id("direct-route-2").marshal(jsonDataFormat)
-            .to("rabbitmq://javainuse.exchange?queue=javainuse.queue&autoDelete=false").end();
+        from("direct:loginRequest").id("direct-route-2").marshal(jsonDataFormat)
+            .to("log:?level=INFO&showBody=true")
+            .to("rabbitmq://javainuse.exchange?queue=loginRequestQueue&autoDelete=false").end();
     }
 }
