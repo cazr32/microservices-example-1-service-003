@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.ws.rs.core.MediaType;
@@ -15,12 +16,18 @@ import org.apache.camel.model.rest.RestBindingMode;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Value;
 
 import org.apache.camel.component.jackson.JacksonDataFormat;
 
 @Component
-public class loginRequestRoute extends RouteBuilder {
+public class LoginRequestRoute extends RouteBuilder {
+
+    private static final Logger logger = LoggerFactory.getLogger(LoginRequestRoute.class);
 
     @Value("${server.port}")
     String serverPort;
@@ -98,6 +105,10 @@ your REST services request and response types.
                 @Override
                 public void process(Exchange exchange) throws Exception {
                     Map<String, Object> headers = exchange.getIn().getHeaders();
+                    if(headers == null){
+                        logger.debug("headers were null");
+                        headers = new HashMap<String, Object>();
+                    }
                     headers.put(Exchange.CONTENT_TYPE, MediaType.TEXT_PLAIN);
                     headers.put(Exchange.HTTP_RESPONSE_CODE, constant(201));
                     exchange.getIn().setHeaders(headers);
