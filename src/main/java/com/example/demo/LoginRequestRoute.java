@@ -104,19 +104,19 @@ your REST services request and response types.
             .process(new Processor() {
                 @Override
                 public void process(Exchange exchange) throws Exception {
-                    Map<String, Object> headers = exchange.getIn().getHeaders();
+                    /*Map<String, Object> headers = exchange.getIn().getHeaders();
                     if(headers == null){
                         logger.debug("headers were null");
                         headers = new HashMap<String, Object>();
                     }
                     headers.put(Exchange.CONTENT_TYPE, MediaType.TEXT_PLAIN);
                     headers.put(Exchange.HTTP_RESPONSE_CODE, constant(201));
-                    exchange.getIn().setHeaders(headers);
+                    exchange.getIn().setHeaders(headers);*/
                 }
             })
             //.to(ExchangePattern.InOnly, "rabbitmq://javainuse.exchange?routingKey=loginRequest&autoDelete=false&declare=false");
-            .to(ExchangePattern.InOnly, "rabbitmq://javainuse.exchange?routingKey=loginRequest&autoDelete=false");
-            //.setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201))
+            .to(ExchangePattern.InOnly, "rabbitmq://javainuse.exchange?routingKey=loginRequest&autoDelete=false")
+            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
             //.setHeader(Exchange.CONTENT_TYPE, MediaType.TEXT_PLAIN);
     }
 }
