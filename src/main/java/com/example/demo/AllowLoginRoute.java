@@ -32,7 +32,7 @@ public class AllowLoginRoute extends RouteBuilder {
         .bindingMode(RestBindingMode.json)
         .dataFormatProperty("prettyPrint", "true");
 
-        rest("/api/").description("REST Allow Login")
+        rest("/api2/").description("REST Allow Login")
         .id("api-route-2")
         .post("/allowLogin")
         .produces(MediaType.APPLICATION_JSON)
