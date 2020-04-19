@@ -25,9 +25,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.apache.camel.component.jackson.JacksonDataFormat;
 
 @Component
-public class loginRequestRoute extends RouteBuilder {
+public class LoginRequestRoute extends RouteBuilder {
 
-    private static final Logger logger = LoggerFactory.getLogger(loginRequestRoute.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoginRequestRoute.class);
 
     @Value("${server.port}")
     String serverPort;
