@@ -90,6 +90,6 @@ your REST services request and response types.
 
         from("direct:loginRequest").id("direct-route-2").marshal(jsonDataFormat)
             .to("log:?level=INFO&showBody=true")
-            .to("rabbitmq://javainuse.exchange?queue=loginRequestQueue&autoDelete=false").end();
+            .to("rabbitmq://javainuse.exchange?routingKey=loginRequest&autoDelete=false").end();
     }
 }

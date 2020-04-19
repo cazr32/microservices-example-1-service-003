@@ -8,6 +8,9 @@ import org.apache.camel.model.rest.RestBindingMode;
 
 import org.springframework.beans.factory.annotation.Value;
 
+import org.apache.camel.CamelContext;
+import org.apache.camel.impl.DefaultCamelContext;
+
 @Component
 public class AllowLoginRoute extends RouteBuilder {
 
@@ -19,6 +22,8 @@ public class AllowLoginRoute extends RouteBuilder {
 
     @Override
     public void configure() {
+
+        CamelContext context = new DefaultCamelContext();
 
         restConfiguration().contextPath(contextPath) //
         .port(serverPort)
@@ -47,7 +52,7 @@ public class AllowLoginRoute extends RouteBuilder {
 
         from("direct:allowedLoginQueue").convertBodyTo(String.class)
             .to("log:?level=INFO&showBody=true")
-            .to("rabbitmq://javainuse.exchange?queue=allowedLoginQueue&autoDelete=false").end();
+            .to("rabbitmq://javainuse.exchange?routingKey=loginGrant&autoDelete=false").end();
     }
 
 }
