@@ -112,6 +112,10 @@ your REST services request and response types.
                     headers.put(Exchange.CONTENT_TYPE, MediaType.TEXT_PLAIN);
                     headers.put(Exchange.HTTP_RESPONSE_CODE, constant(201));
                     exchange.getIn().setHeaders(headers);*/
+
+                    LoginRequest loginRequest = (LoginRequest) exchange.getIn().getBody();
+                    logger.debug("the login request id is {}", loginRequest.getLoginRequestId());
+                    exchange.getIn().setBody(loginRequest.getLoginRequestId());
                 }
             })
             .to(ExchangePattern.InOnly, "rabbitmq://javainuse.exchange?routingKey=loginRequest&autoDelete=false&declare=false")
