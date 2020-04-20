@@ -77,29 +77,9 @@ your REST services request and response types.
             
 
 
-        
-   
-        /*from("direct:remoteService")
-            .routeId("direct-route")
-            .tracing()
-            .log(">>> ${body.id}")
-            .log(">>> ${body.name}")
-//                .transform().simple("blue ${in.body.name}")                
-            .process(new Processor() {
-                @Override
-                public void process(Exchange exchange) throws Exception {
-                    MyBean bodyIn = (MyBean) exchange.getIn().getBody();
-                    
-                    //ExampleServices.example(bodyIn);
+        //JacksonDataFormat jsonDataFormat = new JacksonDataFormat(LoginRequest.class);
 
-                    exchange.getIn().setBody(bodyIn);
-                }
-            })
-            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));*/
-
-        JacksonDataFormat jsonDataFormat = new JacksonDataFormat(LoginRequest.class);
-
-        from("direct:loginRequest").id("direct-route-2").marshal(jsonDataFormat)
+        from("direct:loginRequest").id("direct-route-2")//.marshal(jsonDataFormat)
             .to("log:?level=INFO&showBody=true")
             .process(new Processor() {
                 @Override
