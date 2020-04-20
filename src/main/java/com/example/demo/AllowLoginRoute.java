@@ -13,8 +13,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.apache.camel.CamelContext;
 import org.apache.camel.impl.DefaultCamelContext;
 
+import org.apache.camel.Processor;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Component
 public class AllowLoginRoute extends RouteBuilder {
+
+    private static final Logger logger = LoggerFactory.getLogger(AllowLoginRoute.class);
 
     @Value("${server.port}")
     String serverPort;
@@ -50,10 +57,18 @@ public class AllowLoginRoute extends RouteBuilder {
         .enableCORS(true)
 //                .outType(OutBean.class)
 
-        .to("direct:allowedLoginQueue");
+        .to("direct:allowLoginQueue");
 
-        from("direct:allowedLoginQueue").convertBodyTo(String.class)
+        from("direct:allowLoginQueue").convertBodyTo(String.class)
             .to("log:?level=INFO&showBody=true")
+            .process(new Processor() {
+                @Override
+                public void process(Exchange exchange) throws Exception {
+
+                 String loginRequestId = (String) exchange.getIn().getBody();
+                 logger.debug("the login request id is {}", loginRequestId);
+                }
+            })
             .to(ExchangePattern.InOnly, "rabbitmq://javainuse.exchange?routingKey=loginGrant&autoDelete=false&declare=false")
             //.to(ExchangePattern.InOnly, "rabbitmq://javainuse.exchange?routingKey=loginGrant&autoDelete=false")
             .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
